@@ -23,14 +23,26 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get('/', function(req,res) {
-	res.send('hello world');
+	res.send("Welcome to Jessica's Burgers");
 })
 
 app.get('/ingredients', routes.list);
 
-app.get('/remove', routes.remove);
+app.post('/remove', routes.remove);
 
-app.get('/edit', routes.edit)
+app.post('/restock', routes.restock);
+
+app.post('/edit', routes.edit); 
+
+app.post('/add', routes.add);
+
+app.get('/order', routes.list);
+
+app.post('/submitOrder', routes.submit);
+
+app.get('/kitchen', routes.listOrders);
+
+app.post('/done', routes.done);
 
 app.listen(PORT);
 

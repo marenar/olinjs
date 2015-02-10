@@ -1,0 +1,50 @@
+<h2>Ingredients</h2>
+<ul>
+{{#each ingredients}}
+	{{#with this}}
+		<div class='ingredient'>
+		{{#if out}}
+			<li class='outItem'>Out of stock: {{name}}, ${{price}}</li>
+		{{else}}
+			<li class='item'>{{name}}, ${{price}}</li>
+		{{/if}}
+		<form class='restock' id='restock{{id}}' action='restock' method='POST'>
+			<input class='restockButton' type='submit' value='Restock'>
+		</form>
+		<form id='out{{id}}' action='remove' method='POST'>
+			<input class='outButton' type='submit' value='Out of Stock'>
+		</form>
+		<form id='edit{{id}}' action='edit' method='POST'>
+			<input class='editButton' type='submit' value='Edit'>
+			<div class='editIngredient' style='display:none'>
+				<form id='ingredientData'>
+					Name: <input class='editText' type='text' name='name'>	
+					Price: <input class-'editText' type='text' name='price'>	
+					<input class='submitEdit' type='submit' value='Submit'>
+				</form>
+			</div>
+		</form>
+		{{#if out}}
+			<script>
+				document.getElementById('out{{id}}').style.display = "none";
+				document.getElementById('edit{{id}}').style.display = "none";
+			</script>
+		{{else}}
+			<script>
+				document.getElementById('restock{{id}}').style.display = "none";
+			</script>
+		{{/if}}
+		</div>
+	{{/with}}
+{{/each}}
+</ul>
+<form id='add' action='add' method='POST'>
+	<input class='addButton' type='submit' value='Add'>
+	<div class='newIngredient' style='display:none'>
+		<form id='ingredientData'>
+			Name: <input type='text' name='name'>	
+			Price: <input type='text' name='price'>	
+			<input class='submitAdd' type='submit' value='Submit'>
+		</form>
+	</div>
+</form>
