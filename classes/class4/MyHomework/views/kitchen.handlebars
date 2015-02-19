@@ -1,0 +1,27 @@
+{{#if allDone}}
+	<h2 id='title'>No Orders Pending</h2>
+{{else}}
+	<h2 id='title'>Orders Pending</h2>
+{{/if}}
+<ul>
+{{#each orders}}
+	{{#with this}}
+		<div class='order'>
+		{{#if done}}
+		{{else}}
+			<li>{{#each items}}
+					{{#if @last}}
+						{{#with this}}{{name}}{{/with}}
+					{{else}}
+						{{#with this}}{{name}}, {{/with}} 
+					{{/if}}
+				{{/each}}
+			</li>
+			<form class='done' id='done{{id}}' action='done' method='POST'>
+				<input class='completeButton' type='submit' value='Completed'>
+			</form>
+		{{/if}}
+		</div>
+	{{/with}}
+{{/each}}
+</ul>

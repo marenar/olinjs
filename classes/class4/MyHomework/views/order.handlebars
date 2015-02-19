@@ -1,0 +1,19 @@
+<h2>Order a Burger</h2>
+<ul>
+{{#each ingredients}}
+	{{#with this}}
+		{{#if out}}
+			<form id='order{{id}}' style="color: #A9A9A9">
+				<input id='{{id}}' class='orderBox' type="checkbox" disabled><span class='itemText'> Out of stock: {{name}}, ${{price}}</span>
+			</form>
+		{{else}}
+			<form id='order{{id}}'>
+				<input id='{{id}}' class='orderBox' type="checkbox"><span class='itemText'> {{name}}, ${{price}}</span>
+			</form>
+		{{/if}}
+	{{/with}}
+{{/each}}
+</ul>
+<h4 id='total'>Your current total is: $0.00</h4>
+<input id='submitOrder' type='submit' value='Submit Order'>
+<h4 id='success' style='display:none'>Your order was submitted successfully!</h4>
