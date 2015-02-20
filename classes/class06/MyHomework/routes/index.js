@@ -3,7 +3,6 @@ var User = models.User;
 var Twote = models.Twote;
 
 var main = function (req, res) {
-	console.log("main", req.session);
 	Twote.find({})
 		.populate("_user")
 		.sort({"_id":-1})
@@ -16,7 +15,6 @@ var main = function (req, res) {
 					.populate("twotes")
 					.sort({"_id": -1})
 					.exec(function (err, users) {
-						console.log(users);
 						if (err) {
 							res.status(500).send('Sorry! An error has occured.')
 						} else {
@@ -100,13 +98,29 @@ var createTwote = function(req, res) {
 
 var deleteTwote = function(req, res) {
 	var myId = req.body.myId.substring(6);
-	Twote.remove({"_id": myId}, function(err, removed) {
-		if (err) {
-				res.status(500).send(err);
-			} else {
-				res.send();
-			}
-		});
+	if (req.session.userId) {
+		User.find({"_id": req.session.userId})
+			.exec(function(err, user) {
+				if (err) {
+					res.status(500).send(err);
+				} else {
+					console.log(user);
+					if (user[0].twotes.indexOf(myId) > -1) {
+						Twote.remove({"_id": myId}, function(err, removed) {
+							if (err) {
+								res.status(500).send(err);
+							} else {
+								res.send();
+							}
+						});
+					} else {
+						console.log("Can't delete without login");
+					}
+				}
+			})
+	} else {
+		res.status(500).send("I'm sorry, you're not logged in");
+	}
 }
 
 module.exports.login = login; 

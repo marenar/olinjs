@@ -1,5 +1,6 @@
 body {
 	font-family: "Open Sans";
+	background-image: url("/images/diagonal_striped_brick.png");
 }
 
 input {
@@ -14,8 +15,8 @@ li {
 }
 
 .twote {
-	padding: 20px 30px 50px 30px;
-	width: 375px;
+	padding: 20px 20px 50px 30px;
+	width: 355px;
 	font-size: 120%;
 }
 
@@ -45,7 +46,7 @@ h1 {
 }
 .newTwote {
 	background-color: #40e0d0;
-	width: 375px;
+	width: 380px;
 	padding: 25px 10px 10px 10px;
 	box-shadow: 10px 10px 7px #AAAAAA;
 }
@@ -82,17 +83,30 @@ ul {
 
 #userbox {
 	width: 20%;
-	float: right;
+	float: left;
 }
 
 #twotebox {
-	width: 80%;
+	width: 30%;
+	margin: 0 22%;
+	padding: 0 0 0 4%;
 	float: left;
+	border: 2px solid #AAAAAA;
+	border-radius: 25px;
+	background-color: rgba(255,255,255,0.6);
+}
+
+#loginContainer {
+	width: 30%;
+	margin: 10% auto;
+	padding: 0 0 0 10%;
+	border: 2px solid #AAAAAA;
+	border-radius: 25px;
+	background-color: rgba(255,255,255,0.6);
 }
 
 .highlight {
     background-color: #40e0d0;
     font-style: italic;
     box-shadow: 5px 5px 3px #AAAAAA;
-}
 }

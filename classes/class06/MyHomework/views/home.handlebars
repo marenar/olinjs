@@ -11,13 +11,12 @@
 		</form>
 	{{/with}}
 {{/if}}
-
 <ul id='twotes'>
 {{#each twotes}}
 	{{#with this}}
 		<div class='twote belongsTo{{_user._id}}'>
 			<li class='myTwote' class='twote{{_user._id}}'>{{content}} -{{_user.name}}</li>
-			<input class='delete' id='delete{{_id}}' type='submit' value='Delete'>
+			<input class='delete' id='delete{{_id}}' type='submit' value='Delete' style="display:none";>
 		</div>
 	{{/with}}
 {{/each}}
