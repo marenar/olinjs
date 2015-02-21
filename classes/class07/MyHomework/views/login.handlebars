@@ -1,0 +1,22 @@
+<div id="loginContainer">
+{{#if signup}}
+	<h1 id="loginTitle">Sign Up for Twoter!</h1>
+	<form id='createUser' action='createUser' method='POST'>
+		Username: <input type='text' name='username' style="margin: 10px"> <br>
+		Password: <input type='text' name='password'> <br>
+		<input id='login' type='submit' value='Sign Up'>
+	</form>
+	<form id='auth' action='auth/facebook' method='GET'>
+		<input id='login' type='submit' value='Sign up with Facebook'>
+	</form>
+{{else}}
+	<h1 id="loginTitle">Login to Twoter!</h1>
+	<form id='authUser' action='auth/user' method='POST'>
+		Username: <input type='text' name='username' style="margin: 10px"> <br>
+		Password: <input type='text' name='password'> <br>
+		<input id='login' type='submit' value='Login'>
+	</form>
+	<form id='auth' action='auth/facebook' method='GET'>
+		<input id='login' type='submit' value='Log in with Facebook'>
+	</form>
+{{/if}}
