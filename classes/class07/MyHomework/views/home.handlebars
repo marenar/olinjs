@@ -1,0 +1,54 @@
+<div id='myBox'>
+<div id='twotebox'>
+<h1>Twoter</h1>
+{{#if myUser}}
+	{{#with myUser}}
+		<form id='new{{_id}}' class='newTwote' action='createTwote' method='POST'>
+			<input id='twoteText' type='text' name='twoteText'>
+			<input id='makeNewTwote' type='submit' value='Post this!'>
+			<br>
+			<div id='usertag'>-{{name}}</div>
+		</form>
+	{{/with}}
+	<ul id='twotes'>
+	{{#each twotes}}
+		{{#with this}}
+			<div class='twote belongsTo{{_user._id}}'>
+				<li class='myTwote' class='twote{{_user._id}}'>{{content}} -{{_user.name}}</li>
+				<input class='delete' id='delete{{_id}}' type='submit' value='Delete' style="display:none";>
+			</div>
+		{{/with}}
+	{{/each}}
+	</ul>
+{{else}}
+	<p>Please sign up or login to view twotes</p>
+{{/if}}
+</div>
+
+<div id='userbox'>
+
+{{#if myUser}}
+	<form id='logout' action='logout' method='POST'>
+		<input class='button'type='submit' value='Log out'>
+	</form>
+{{else}}
+	<div id='signOrLogin'>
+		<form id='signUp' action='login' method='GET'>
+			<input class='button' type='submit' value='Sign Up'>
+			<input type='hidden' name='signup' value='true'>
+		</form>
+		<form id='loginMain' action='login' method='GET'>
+			<input class='button' type='submit' value='Log in'>
+		</form>
+	</div>
+{{/if}}
+<h3>Users</h3>
+<ul id='users'>
+{{#each users}}
+	{{#with this}}
+		<input class='user' id='{{_id}}' type='submit' value='{{name}}'><br>
+	{{/with}}
+{{/each}}
+</ul>
+</div>
+</div>
